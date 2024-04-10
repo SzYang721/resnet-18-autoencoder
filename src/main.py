@@ -5,6 +5,10 @@ from scripts.data_loading import get_cifar10_data_loaders
 from scripts.utils import train_epoch, test_epoch, plot_ae_outputs, checkpoint, resume
 import torch
 import datetime
+import numpy as np
+
+!pip install torchsummary
+from torchsummary import summary
 
 
 if __name__=='__main__': 
@@ -20,11 +24,15 @@ if __name__=='__main__':
     print("Using device:", device)
 
     print("Defining model...")
-    cae = AE('light')
+    cae = AE('default')
+    summary(cae.decoder.to("cpu"), input_size=(512, 1, 1), device = "cpu")
+    summary(cae.encoder.to("cpu"), input_size=(512, 1, 1), device = "cpu")
     # Define the training parameters
     params_to_optimize = [
         {'params': cae.parameters()}
     ]
+    parameters = filter(lambda p: p.requires_grad, cae.parameters())
+    print('# of model parameters: ' + str(sum([np.prod(p.size()) for p in parameters])))
     # Define the loss function
     loss_fn = torch.nn.MSELoss()
     # Define the optimizer
