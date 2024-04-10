@@ -7,7 +7,6 @@ import torch
 import datetime
 import numpy as np
 
-!pip install torchsummary
 from torchsummary import summary
 
 
