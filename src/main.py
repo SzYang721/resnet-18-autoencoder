@@ -24,8 +24,7 @@ if __name__=='__main__':
 
     print("Defining model...")
     cae = AE('default')
-    summary(cae.decoder.to("cpu"), input_size=(512, 1, 1), device = "cpu")
-    summary(cae.encoder.to("cpu"), input_size=(512, 1, 1), device = "cpu")
+    summary(cae.to("cpu"), input_size=(3, 32, 32), device = "cpu")
     # Define the training parameters
     params_to_optimize = [
         {'params': cae.parameters()}
