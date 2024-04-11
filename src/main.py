@@ -9,6 +9,10 @@ import numpy as np
 
 from torchsummary import summary
 
+from models.resnet import resnet18 as encoder
+from models.resnet_decode import resnet18 as decoder
+from models.Autoencoder_CNN import Autoencoder
+
 
 if __name__=='__main__': 
 
@@ -23,7 +27,10 @@ if __name__=='__main__':
     print("Using device:", device)
 
     print("Defining model...")
-    cae = AE('default')
+    # cae = AE('default')
+    Encoder = encoder()
+    Decoder = decoder()
+    cae = Autoencoder(Encoder, Decoder)
     summary(cae.encoder.to(device), input_size=(3, 32, 32), device = device)
     summary(cae.decoder.to(device), input_size=(512, 1, 1), device = device)
     # Define the training parameters
