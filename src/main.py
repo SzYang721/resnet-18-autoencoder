@@ -34,7 +34,7 @@ if __name__=='__main__':
     Encoder.load_state_dict(torch.load(load_path + 'epoch_' + str(i + 1).zfill(3) + '.pth',map_location=device))
     Decoder = decoder(num_classes=10,fixdim=True,SOTA=False)
     cae = Autoencoder(Encoder, Decoder)
-    cae.freeze_encoder()
+    # cae.freeze_encoder()
     print("Freeze the encoder weight")
     summary(cae.encoder.to(device), input_size=(3, 32, 32), device = device)
     summary(cae.decoder.to(device), input_size=(10, 1, 1), device = device)
