@@ -39,7 +39,7 @@ if __name__=='__main__':
     # cae.freeze_encoder()
     # print("Freeze the encoder weight")
     summary(cae.encoder.to(device), input_size=(3, 32, 32), device = device)
-    summary(cae.decoder.to(device), input_size=(10, 1, 1), device = device)
+    summary(cae.decoder.to(device), input_size=(512, 1, 1), device = device)
     # Define the training parameters
     params_to_optimize = [
         {'params': cae.parameters()}
