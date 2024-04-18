@@ -1,6 +1,6 @@
 # Parameter configurations
 BATCH_SIZE = 128
-EPOCHS = 20 #200
+EPOCHS = 200 #200
 MODEL_FILENAME = './data/model.ckpt'
 EARLY_STOP_THRESH = 3 # default 30
 # Learning rate for both encoder and decoder
