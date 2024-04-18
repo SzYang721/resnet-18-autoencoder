@@ -28,7 +28,7 @@ if __name__=='__main__':
 
     print("Defining model...")
     cae = AE('default')
-    Encoder = encoder(fc_bias=True,fixdim=True,ETF_fc=True,SOTA=False)
+    Encoder = encoder(num_classes=10,fc_bias=True,fixdim=True,ETF_fc=True,SOTA=False)
     # load_path = "/data5/model_weights/"+"Resnet18-design-SGD"+"/"
     # i = TARGET_EPOCHS
     # Encoder.load_state_dict(torch.load(load_path + 'epoch_' + str(i + 1).zfill(3) + '.pth',map_location=device))
