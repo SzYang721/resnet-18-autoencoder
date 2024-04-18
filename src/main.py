@@ -27,7 +27,7 @@ if __name__=='__main__':
     print("Using device:", device)
 
     print("Defining model...")
-    cae = AE('default')
+    cae = AE('light')
     # Encoder = encoder()
     # Decoder = decoder()
     # cae = Autoencoder(Encoder, Decoder)
