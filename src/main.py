@@ -29,7 +29,7 @@ if __name__=='__main__':
     print("Defining model...")
     cae = AE('default')
     Encoder = encoder()
-    load_path = "./model_weights/"+"Resnet18-design-SGD"+"/"
+    load_path = "/data5/model_weights/"+"Resnet18-design-SGD"+"/"
     i = TARGET_EPOCHS
     Encoder.load_state_dict(torch.load(load_path + 'epoch_' + str(i + 1).zfill(3) + '.pth',map_location=device))
     Decoder = decoder()
