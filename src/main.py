@@ -1,5 +1,5 @@
 
-from scripts.config import BATCH_SIZE, EPOCHS, MODEL_FILENAME, EARLY_STOP_THRESH, LR, WORKERS
+from scripts.config import BATCH_SIZE, EPOCHS, MODEL_FILENAME, EARLY_STOP_THRESH, LR, WORKERS, TARGET_EPOCHS
 from classes.resnet_autoencoder import AE
 from scripts.data_loading import get_cifar10_data_loaders
 from scripts.utils import train_epoch, test_epoch, plot_ae_outputs, checkpoint, resume
@@ -28,11 +28,14 @@ if __name__=='__main__':
 
     print("Defining model...")
     cae = AE('default')
-    # Encoder = encoder()
-    # Decoder = decoder()
-    # cae = Autoencoder(Encoder, Decoder)
-    # summary(cae.encoder.to(device), input_size=(3, 32, 32), device = device)
-    # summary(cae.decoder.to(device), input_size=(512, 1, 1), device = device)
+    Encoder = encoder()
+    load_path = "./model_weights/"+"Resnet18-design-SGD"+"/"
+    i = TARGET_EPOCHS
+    Encoder.load_state_dict(torch.load(load_path + 'epoch_' + str(i + 1).zfill(3) + '.pth',map_location=device))
+    Decoder = decoder()
+    cae = Autoencoder(Encoder, Decoder)
+    summary(cae.encoder.to(device), input_size=(3, 32, 32), device = device)
+    summary(cae.decoder.to(device), input_size=(512, 1, 1), device = device)
     # Define the training parameters
     params_to_optimize = [
         {'params': cae.parameters()}
