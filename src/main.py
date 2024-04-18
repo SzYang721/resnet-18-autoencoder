@@ -29,13 +29,13 @@ if __name__=='__main__':
     print("Defining model...")
     cae = AE('default')
     Encoder = encoder(num_classes=10,fc_bias=True,fixdim=True,ETF_fc=True,SOTA=False)
-    # load_path = "/data5/model_weights/"+"Resnet18-design-SGD"+"/"
-    # i = TARGET_EPOCHS
-    # Encoder.load_state_dict(torch.load(load_path + 'epoch_' + str(i + 1).zfill(3) + '.pth',map_location=device))
+    load_path = "/data5/model_weights/"+"Resnet18-design-SGD"+"/"
+    i = TARGET_EPOCHS
+    Encoder.load_state_dict(torch.load(load_path + 'epoch_' + str(i + 1).zfill(3) + '.pth',map_location=device))
     Decoder = decoder(num_classes=10,fixdim=True,SOTA=False)
     cae = Autoencoder(Encoder, Decoder)
     summary(cae.encoder.to(device), input_size=(3, 32, 32), device = device)
-    summary(cae.decoder.to(device), input_size=(512, 1, 1), device = device)
+    summary(cae.decoder.to(device), input_size=(10, 1, 1), device = device)
     # Define the training parameters
     params_to_optimize = [
         {'params': cae.parameters()}
