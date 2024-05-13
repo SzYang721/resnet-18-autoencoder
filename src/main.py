@@ -38,9 +38,9 @@ if __name__=='__main__':
     # cae = Autoencoder(Encoder, Decoder)
     # cae.freeze_encoder()
     # print("Freeze the encoder weight")
+    cae.to(device)
     summary(cae.encoder.to("cuda"), input_size=(3, 32, 32), device = "cuda")
     summary(cae.decoder.to("cuda"), input_size=(64, 8, 8), device = "cuda")
-    cae.to(device)
     # Define the training parameters
     params_to_optimize = [
         {'params': cae.parameters()}
